@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Detalle: {{ idea.titulo }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ idea.titulo }}</h1>
+    <h2>Propuesta por {{ idea.autor }}</h2>
+    <p>{{ idea.descripcion }}</p>
+{% endblock %}
+

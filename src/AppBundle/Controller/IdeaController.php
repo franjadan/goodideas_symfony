@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IdeaController extends Controller
 {
     /**
-     * @Route("/ideas", name="ideas_listar")
+     * @Route("/ideas", name="idea_listar")
      */
     public function listarAction()
     {
@@ -16,6 +16,18 @@ class IdeaController extends Controller
 
         return $this->render('idea/listar.html.twig', [
             'ideas' => $ideas
+        ]);
+    }
+
+    /**
+     * @Route("/idea/{numero}", name="idea_mostrar")
+     */
+    public function mostrarAction($numero)
+    {
+        $ideas = $this->getIdeas();
+
+        return $this->render('idea/mostrar.html.twig', [
+            'idea' => $ideas[$numero]
         ]);
     }
 
