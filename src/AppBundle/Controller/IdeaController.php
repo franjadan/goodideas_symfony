@@ -20,18 +20,18 @@ class IdeaController extends Controller
     }
 
     /**
-     * @Route("/idea/{numero}", name="idea_mostrar")
+     * @Route("/idea/{id}", name="idea_mostrar", requirements={"id": "\d+"})
      */
-    public function mostrarAction($numero)
+    public function mostrarAction($id)
     {
         $ideas = $this->getIdeas();
 
-        if (!isset($ideas[$numero])) {
+        if (!isset($ideas[$id])) {
             throw $this->createNotFoundException();
         }
 
         return $this->render('idea/mostrar.html.twig', [
-            'idea' => $ideas[$numero]
+            'idea' => $ideas[$id]
         ]);
     }
 
