@@ -17,7 +17,7 @@
         <tbody>
             {% for idea in ideas %}
             <tr>
-                <td></td>
+                <td>{{ idea.fecha_propuesta|date('d/m/Y') }}</td>
                 <td>{{ idea.titulo }}</td>
                 <td>{{ idea.descripcion }}</td>
                 <td>{{ idea.autor }}</td>
