@@ -26,6 +26,10 @@ class IdeaController extends Controller
     {
         $ideas = $this->getIdeas();
 
+        if (!isset($ideas[$numero])) {
+            throw $this->createNotFoundException();
+        }
+
         return $this->render('idea/mostrar.html.twig', [
             'idea' => $ideas[$numero]
         ]);
