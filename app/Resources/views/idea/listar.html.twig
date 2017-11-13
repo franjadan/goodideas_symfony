@@ -4,4 +4,25 @@
 
 {% block body %}
     <h1>Catálogo de ideas</h1>
+
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Título</th>
+                <th>Detalle</th>
+                <th>Autor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for idea in ideas %}
+            <tr>
+                <td></td>
+                <td>{{ idea.titulo }}</td>
+                <td>{{ idea.descripcion }}</td>
+                <td>{{ idea.autor }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
