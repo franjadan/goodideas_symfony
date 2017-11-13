@@ -8,5 +8,7 @@
     <h1>{{ idea.titulo }}</h1>
     <h2>Propuesta por {{ idea.autor }}</h2>
     <p>{{ idea.descripcion }}</p>
+
+    <a href="{{ path('idea_listar') }}">Volver al listado de ideas</a>
 {% endblock %}
 
