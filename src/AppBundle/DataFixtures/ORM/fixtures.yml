@@ -1,0 +1,6 @@
+AppBundle\Entity\Idea:
+    idea_{1..20}:
+      titulo: <sentence()>
+      descripcion: <paragraph()>
+      autor: <es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>
+      fechaPropuesta: <dateTimeThisYear()>
