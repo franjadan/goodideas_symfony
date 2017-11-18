@@ -9,6 +9,6 @@
     <h2>Propuesta por {{ idea.autor }} el {{ idea.fechaPropuesta|date('d/m/Y') }}</h2>
     <p>{{ idea.descripcion }}</p>
 
-    <a href="{{ path('idea_listar') }}">Volver al listado de ideas</a>
+    <a href="{{ path('idea_listar') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Volver al listado de ideas</a>
 {% endblock %}
 
