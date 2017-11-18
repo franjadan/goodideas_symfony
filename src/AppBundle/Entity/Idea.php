@@ -47,6 +47,22 @@ class Idea
      */
     private $fechaPropuesta;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $fechaAprobacion;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $fechaRechazo;
+
+
+
     /// Getters y Setters
 
     /**
@@ -126,6 +142,42 @@ class Idea
     public function setFechaPropuesta($fechaPropuesta)
     {
         $this->fechaPropuesta = $fechaPropuesta;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFechaAprobacion()
+    {
+        return $this->fechaAprobacion;
+    }
+
+    /**
+     * @param \DateTime $fechaAprobacion
+     * @return Idea
+     */
+    public function setFechaAprobacion($fechaAprobacion)
+    {
+        $this->fechaAprobacion = $fechaAprobacion;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFechaRechazo()
+    {
+        return $this->fechaRechazo;
+    }
+
+    /**
+     * @param \DateTime $fechaRechazo
+     * @return Idea
+     */
+    public function setFechaRechazo($fechaRechazo)
+    {
+        $this->fechaRechazo = $fechaRechazo;
         return $this;
     }
 }
