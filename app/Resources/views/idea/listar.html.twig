@@ -5,6 +5,12 @@
 {% block content %}
     <h1>Catálogo de ideas</h1>
 
+    <p class="well well-sm">
+        <a href="{{ path('idea_listar', {'filtro': 'todas'}) }}" class="btn btn-info">Mostrar todas las ideas</a>
+        <a href="{{ path('idea_listar', {'filtro': 'aprobadas'}) }}" class="btn btn-info">Mostrar las ideas aprobadas</a>
+        <a href="{{ path('idea_listar', {'filtro': 'rechazadas'}) }}" class="btn btn-info">Mostrar las ideas rechazadas</a>
+    </p>
+
     <table class="table table-bordered table-hover table-striped">
         <thead>
             <tr>

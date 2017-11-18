@@ -10,11 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class IdeaController extends Controller
 {
     /**
-     * @Route("/ideas", name="idea_listar")
+     * @Route("/ideas/{filtro}", name="idea_listar", defaults={"filtro": "todas"}, requirements={"filtro": "todas|aprobadas|rechazadas"})
      */
-    public function listarAction()
+    public function listarAction($filtro)
     {
-        $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->findPorFechaDecreciente();
+        $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->findPorFechaDecrecienteYFiltro($filtro);
 
         return $this->render('idea/listar.html.twig', [
             'ideas' => $ideas
