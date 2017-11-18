@@ -9,6 +9,8 @@ class IdeaRepository extends EntityRepository
     public function findPorFechaDecreciente()
     {
         return $this->createQueryBuilder('i')
+            ->addSelect('u')
+            ->join('i.autor', 'u')
             ->orderBy('i.fechaPropuesta', 'DESC')
             ->getQuery()
             ->getResult();
@@ -17,6 +19,8 @@ class IdeaRepository extends EntityRepository
     public function findPorFechaDecrecienteYFiltro($filtro)
     {
         $qb = $this->createQueryBuilder('i')
+            ->addSelect('u')
+            ->join('i.autor', 'u')
             ->orderBy('i.fechaPropuesta', 'DESC');
 
         if ($filtro === 'aprobadas') {
