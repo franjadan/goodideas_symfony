@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Idea;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -20,16 +21,10 @@ class IdeaController extends Controller
     }
 
     /**
-     * @Route("/idea/{id}", name="idea_mostrar", requirements={"id": "\d+"})
+     * @Route("/idea/{id}", name="idea_mostrar")
      */
-    public function mostrarAction($id)
+    public function mostrarAction(Idea $idea)
     {
-        $idea = $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->find($id);
-
-        if (null === $idea) {
-            throw $this->createNotFoundException();
-        }
-
         return $this->render('idea/mostrar.html.twig', [
             'idea' => $idea
         ]);
