@@ -18,4 +18,16 @@ class UsuarioController extends Controller
             'usuarios' => $usuarios
         ]);
     }
+
+    /**
+     * @Route("/usuarios", name="usuarios_listar")
+     */
+    public function listarUsuariosConIdeasAction()
+    {
+        $usuarios = $this->getDoctrine()->getRepository('AppBundle:Usuario')->findByConIdeas();
+
+        return $this->render('usuario/usuario_listar.html.twig', [
+            'usuarios' => $usuarios
+        ]);
+    }
 }
