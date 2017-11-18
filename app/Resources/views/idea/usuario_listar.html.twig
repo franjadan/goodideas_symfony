@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block title 'Ideas de {{ usuario }}' %}
+
+{% block content %}
+    <h1>Ideas propuestas por {{ usuario }}</h1>
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Título</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for idea in ideas %}
+            <tr>
+                <td>{{ idea.fechaPropuesta|date('d/m/Y') }}</td>
+                <td><a href="{{ path('idea_mostrar', {'id': idea.id}) }}">{{ idea.titulo }}</a></td>
+                <td>{{ idea.descripcion }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No hay ideas que mostrar</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('idea_listar') }}">Volver al listado completo de ideas</a>
+{% endblock %}
