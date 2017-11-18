@@ -76,6 +76,10 @@ class Usuario
     private $moderador;
 
 
+    public function __toString()
+    {
+        return $this->getNombre().' '.$this->getApellidos();
+    }
 
     /// Getters y setters
 

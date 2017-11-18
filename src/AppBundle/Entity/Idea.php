@@ -34,9 +34,10 @@ class Idea
     private $descripcion;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumn(nullable=false)
      *
-     * @var string
+     * @var Usuario
      */
     private $autor;
 
@@ -110,7 +111,7 @@ class Idea
     }
 
     /**
-     * @return string
+     * @return Usuario
      */
     public function getAutor()
     {
@@ -118,7 +119,7 @@ class Idea
     }
 
     /**
-     * @param string $autor
+     * @param Usuario $autor
      * @return Idea
      */
     public function setAutor($autor)

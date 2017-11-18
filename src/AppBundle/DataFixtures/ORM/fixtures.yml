@@ -2,5 +2,16 @@ AppBundle\Entity\Idea:
     idea_{1..20}:
       titulo: <sentence()>
       descripcion: <paragraph()>
-      autor: <es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>
+      autor: '@usuario*'
       fechaPropuesta: <dateTimeThisYear()>
+
+AppBundle\Entity\Usuario:
+    usuario_{1..20}:
+      nombreUsuario (unique): <es_ES:username()>
+      password: <word()>
+      nombre: <es_ES:firstName()>
+      apellidos: '<es_ES:lastName()> <es_ES:lastName()>'
+      correoElectronico: <es_ES:email()>
+      administrador: false
+      moderador: <boolean(25)>
+      seleccionador: <boolean(10)>
