@@ -19,6 +19,8 @@ class UsuarioRepository extends EntityRepository
     public function findByConIdeas()
     {
         return $this->createQueryBuilder('u')
+            ->addSelect('i')
+            ->leftJoin('u.ideasPropuestas', 'i')
             ->andWhere('SIZE(u.ideasPropuestas)>0')
             ->orderBy('SIZE(u.ideasPropuestas)', 'DESC')
             ->addOrderBy('u.apellidos')
