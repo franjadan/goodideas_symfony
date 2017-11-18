@@ -8,6 +8,7 @@
     <table class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
+                <th>Estado</th>
                 <th>Fecha</th>
                 <th>Título</th>
                 <th>Detalle</th>
@@ -16,6 +17,7 @@
         <tbody>
             {% for idea in ideas %}
             <tr>
+                <td>{% if idea.fechaRechazo %}<i class="fa fa-times"></i>{% elseif idea.fechaAprobacion %}<i class="fa fa-check"></i>{% endif %}</td>
                 <td>{{ idea.fechaPropuesta|date('d/m/Y') }}</td>
                 <td><a href="{{ path('idea_mostrar', {'id': idea.id}) }}">{{ idea.titulo }}</a></td>
                 <td>{{ idea.descripcion }}</td>

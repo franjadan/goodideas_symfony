@@ -4,6 +4,8 @@ AppBundle\Entity\Idea:
       descripcion: <paragraph()>
       autor: '@usuario*'
       fechaPropuesta: <dateTimeThisYear()>
+      fechaAprobacion: '25%? <dateTimeBetween($fechaPropuesta, "now")>'
+      fechaRechazo: '25%? <dateTimeBetween(max($fechaPropuesta, $fechaAprobacion), "now")>'
 
 AppBundle\Entity\Usuario:
     usuario_{1..20}:
