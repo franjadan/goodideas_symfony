@@ -16,7 +16,14 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li{% if app.request.attributes.get('_route') == 'inicio' %} class="active"{% endif %}><a href="{{ path('inicio') }}"><i class="fa fa-home"></i> Inicio</a></li>
-                    <li{% if app.request.attributes.get('_route') == 'idea_listar' %} class="active"{% endif %}><a href="{{ path('idea_listar') }}"><i class="fa fa-list"></i> Ideas</a></li>
+                    <li{% if app.request.attributes.get('_route') starts with 'idea' %} class="active"{% endif %}><a href="{{ path('idea_listar') }}"><i class="fa fa-list"></i> Ideas</a></li>
+                    <li class="dropdown{% if app.request.attributes.get('_route') starts with 'usuario' %} active{% endif %}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Usuarios <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('usuarios_listar') }}">Con ideas propuestas</a></li>
+                            <li><a href="{{ path('usuarios_sin_ideas_listar') }}">Sin ideas propuestas</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
