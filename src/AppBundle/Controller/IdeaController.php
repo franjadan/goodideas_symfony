@@ -14,7 +14,7 @@ class IdeaController extends Controller
      */
     public function listarAction()
     {
-        $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->findAll();
+        $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->findPorFechaDecreciente();
 
         return $this->render('idea/listar.html.twig', [
             'ideas' => $ideas
