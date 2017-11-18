@@ -22,6 +22,10 @@
                 <td>{{ idea.descripcion }}</td>
                 <td>{{ idea.autor }}</td>
             </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No hay ideas que mostrar</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
