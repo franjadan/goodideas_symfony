@@ -20,7 +20,7 @@
                 <td>{{ idea.fechaPropuesta|date('d/m/Y') }}</td>
                 <td><a href="{{ path('idea_mostrar', {'id': idea.id}) }}">{{ idea.titulo }}</a></td>
                 <td>{{ idea.descripcion }}</td>
-                <td>{{ idea.autor }}</td>
+                <td><a href="{{ path('idea_usuario_mostrar', {'id': idea.autor.id}) }}">{{ idea.autor }}</a></td>
             </tr>
             {% else %}
             <tr>
