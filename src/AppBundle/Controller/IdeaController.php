@@ -12,7 +12,7 @@ class IdeaController extends Controller
      */
     public function listarAction()
     {
-        $ideas = $this->getIdeas();
+        $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->findAll();
 
         return $this->render('idea/listar.html.twig', [
             'ideas' => $ideas
@@ -24,23 +24,14 @@ class IdeaController extends Controller
      */
     public function mostrarAction($id)
     {
-        $ideas = $this->getIdeas();
+        $idea = $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->find($id);
 
-        if (!isset($ideas[$id])) {
+        if (null === $idea) {
             throw $this->createNotFoundException();
         }
 
         return $this->render('idea/mostrar.html.twig', [
-            'idea' => $ideas[$id]
+            'idea' => $idea
         ]);
-    }
-
-    private function getIdeas()
-    {
-        return [
-            1 => ['id' => 1, 'titulo' => 'Doblar el número de horas de HLC', 'descripcion' => 'Estaría bien que HLC tuviera más horas y así poder hacer más ejercicios', 'autor' => 'Chuck Norris', 'fecha_propuesta' => new \DateTime('2017-11-11')],
-            7 => ['id' => 7, 'titulo' => 'Irnos de tapas', 'descripcion' => '¿A quién no le apetece que nos echemos unas tapas un día de estos al acabar las clases?', 'autor' => 'Juan Nadie', 'fecha_propuesta' => new \DateTime('2017-11-12')],
-            8 => ['id' => 8, 'titulo' => 'Aprobado general', 'descripcion' => 'Anda, apruébanos ya a todos y así no tenemos que venir más a clase', 'autor' => 'Oso Yogui', 'fecha_propuesta' => new \DateTime('2017-11-13')]
-        ];
     }
 }
