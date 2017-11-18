@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title 'Usuarios que no han propuesto ideas' %}
+
+{% block content %}
+    <h1>Usuarios que aún no han propuesto ideas</h1>
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>Nombre de usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.apellidos }}</td>
+                <td>{{ usuario.nombre}} </td>
+                <td>{{ usuario.nombreUsuario }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No hay usuarios que mostrar</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
