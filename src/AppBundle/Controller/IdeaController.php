@@ -17,7 +17,8 @@ class IdeaController extends Controller
         $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->findPorFechaDecrecienteYFiltro($filtro);
 
         return $this->render('idea/listar.html.twig', [
-            'ideas' => $ideas
+            'ideas' => $ideas,
+            'filtro' => $filtro
         ]);
     }
 
