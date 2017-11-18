@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Usuario;
 use Doctrine\ORM\EntityRepository;
 
 class IdeaRepository extends EntityRepository
@@ -35,6 +36,16 @@ class IdeaRepository extends EntityRepository
         }
 
         return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByUsuario(Usuario $usuario)
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.autor = :usuario')
+            ->setParameter('usuario', $usuario)
+            ->orderBy('i.fechaPropuesta', 'DESC')
             ->getQuery()
             ->getResult();
     }

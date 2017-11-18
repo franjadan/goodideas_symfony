@@ -27,9 +27,11 @@ class IdeaController extends Controller
      */
     public function mostrarUsuarioAction(Usuario $usuario)
     {
+        $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->findByUsuario($usuario);
+
         return $this->render('idea/usuario_listar.html.twig', [
             'usuario' => $usuario,
-            'ideas' => $usuario->getIdeasPropuestas()
+            'ideas' => $ideas
         ]);
     }
 
