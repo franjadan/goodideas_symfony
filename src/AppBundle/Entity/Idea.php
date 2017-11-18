@@ -34,7 +34,7 @@ class Idea
     private $descripcion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="ideasPropuestas")
      * @ORM\JoinColumn(nullable=false)
      *
      * @var Usuario

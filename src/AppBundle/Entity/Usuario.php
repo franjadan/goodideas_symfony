@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -74,6 +76,20 @@ class Usuario
      * @var boolean
      */
     private $moderador;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Idea", mappedBy="autor")
+     *
+     * @var Collection|Idea[]
+     */
+    private $ideasPropuestas;
+
+
+
+    public function __construct()
+    {
+        $this->ideasPropuestas = new ArrayCollection();
+    }
 
 
     public function __toString()
@@ -234,5 +250,40 @@ class Usuario
         $this->moderador = $moderador;
         return $this;
     }
+
+    /**
+     * @return Collection|Idea[]
+     */
+    public function getIdeasPropuestas()
+    {
+        return $this->ideasPropuestas;
+    }
+
+    /**
+     * @param Idea $idea
+     * @return Usuario
+     */
+    public function addIdeasPropuestas(Idea $idea)
+    {
+        if (!$this->ideasPropuestas->contains($idea)) {
+            $this->ideasPropuestas->add($idea);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Idea $idea
+     * @return Usuario
+     */
+    public function removeIdeasPropuestas(Idea $idea)
+    {
+        if ($this->ideasPropuestas->contains($idea)) {
+            $this->ideasPropuestas->removeElement($idea);
+        }
+
+        return $this;
+    }
+
 
 }
