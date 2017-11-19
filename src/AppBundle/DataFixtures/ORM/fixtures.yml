@@ -41,3 +41,10 @@ AppBundle\Entity\Categoria:
   categoria_{1..5}:
     nombre: <word()>
     descripcion: <paragraph()>
+
+AppBundle\Entity\Comentario:
+  comentario_{1..100}:
+    idea: '@idea*'
+    usuario: '@usuario*'
+    fecha: <dateTimeBetween($idea->getFechaPropuesta(), "now")>
+    texto: <paragraph()>

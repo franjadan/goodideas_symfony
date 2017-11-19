@@ -85,11 +85,19 @@ class Idea
      */
     private $categorias;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comentario", mappedBy="idea")
+     *
+     * @var Collection|Comentario[]
+     */
+    private $comentarios;
+
 
     public function __construct()
     {
         $this->votos = new ArrayCollection();
         $this->categorias = new ArrayCollection();
+        $this->comentarios = new ArrayCollection();
     }
 
     /// Getters y Setters
@@ -292,5 +300,38 @@ class Idea
     public function getCategorias()
     {
         return $this->categorias;
+    }
+
+    /**
+     * @param Comentario $comentario
+     * @return Idea
+     */
+    public function addComentario(Comentario $comentario)
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios->add($comentario);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Comentario $comentario
+     * @return Idea
+     */
+    public function removeComentario(Comentario $comentario)
+    {
+        $this->comentarios->removeElement($comentario);
+        return $this;
+    }
+
+    /**
+     * Get comentarios
+     *
+     * @return Collection
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
     }
 }
