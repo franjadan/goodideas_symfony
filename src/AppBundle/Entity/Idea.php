@@ -71,7 +71,12 @@ class Idea
      */
     private $votos;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity="Prioridad")
+     *
+     * @var Prioridad
+     */
+    private $prioridad;
     
     public function __construct()
     {
@@ -229,4 +234,23 @@ class Idea
 
         return $this;
     }
+
+    /**
+     * @return Prioridad
+     */
+    public function getPrioridad()
+    {
+        return $this->prioridad;
+    }
+
+    /**
+     * @param Prioridad $prioridad
+     * @return Idea
+     */
+    public function setPrioridad($prioridad)
+    {
+        $this->prioridad = $prioridad;
+        return $this;
+    }
+
 }
