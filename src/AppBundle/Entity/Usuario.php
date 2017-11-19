@@ -84,11 +84,18 @@ class Usuario
      */
     private $ideasPropuestas;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Voto", mappedBy="usuario")
+     *
+     * @var Collection|Voto[]
+     */
+    private $votos;
 
 
     public function __construct()
     {
         $this->ideasPropuestas = new ArrayCollection();
+        $this->votos = new ArrayCollection();
     }
 
 
@@ -285,5 +292,37 @@ class Usuario
         return $this;
     }
 
+    /**
+     * @return Collection
+     */
+    public function getVotos()
+    {
+        return $this->votos;
+    }
 
+    /**
+     * @param Voto $voto
+     * @return Usuario
+     */
+    public function addVoto(Voto $voto)
+    {
+        if (!$this->votos->contains($voto)) {
+            $this->votos->add($voto);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Voto $voto
+     * @return Usuario
+     */
+    public function removeVoto(Voto $voto)
+    {
+        if ($this->votos->contains($voto)) {
+            $this->votos->removeElement($voto);
+        }
+
+        return $this;
+    }
 }

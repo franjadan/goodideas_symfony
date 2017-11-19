@@ -21,7 +21,7 @@ class Voto
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="votos")
      *
      * @var Usuario
      */
