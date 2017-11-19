@@ -91,11 +91,19 @@ class Usuario
      */
     private $votos;
 
+    /**
+     * @ORM\OneToMany(targetEntity="HistorialPuntos", mappedBy="usuario")
+     *
+     * @var Collection|HistorialPuntos[]
+     */
+    private $historial;
+
 
     public function __construct()
     {
         $this->ideasPropuestas = new ArrayCollection();
         $this->votos = new ArrayCollection();
+        $this->historial = new ArrayCollection();
     }
 
 
@@ -324,5 +332,37 @@ class Usuario
         }
 
         return $this;
+    }
+
+    /**
+     * @param HistorialPuntos $historial
+     * @return Usuario
+     */
+    public function addHistorial(HistorialPuntos $historial)
+    {
+        if (!$this->historial->contains($historial)) {
+            $this->historial->add($historial);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param HistorialPuntos $historial
+     * @return Usuario
+     */
+    public function removeHistorial(HistorialPuntos $historial)
+    {
+        $this->historial->removeElement($historial);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getHistorial()
+    {
+        return $this->historial;
     }
 }

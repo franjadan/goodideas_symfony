@@ -57,3 +57,20 @@ AppBundle\Entity\Comentario:
     usuario: '@usuario*'
     fecha: <dateTimeBetween($idea->getFechaPropuesta(), "now")>
     texto: <paragraph()>
+
+AppBundle\Entity\HistorialPuntos:
+  inicial_{1..20}:
+    usuario: '@usuario_<current()>'
+    puntos: 10
+    fecha: <dateTimeThisYear()>
+    descripcion: 'Saldo inicial'
+  historial_{1..40}:
+    usuario: '@usuario*'
+    puntos: <numberBetween(-4,-1)>
+    fecha: <dateTimeThisYear()>
+    descripcion: <sentence()>
+  historial_{41..50}:
+    usuario: '@usuario*'
+    puntos: <numberBetween(1,3)>
+    fecha: <dateTimeThisYear()>
+    descripcion: <sentence()>
