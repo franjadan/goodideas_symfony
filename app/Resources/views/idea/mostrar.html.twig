@@ -7,7 +7,13 @@
 {% block content %}
     <h1>{{ idea.titulo }}</h1>
     <h2>Propuesta por {{ idea.autor }} el {{ idea.fechaPropuesta|date('d/m/Y') }}</h2>
-    <p>{{ idea.descripcion }}</p>
+    {% if idea.fechaRechazo %}
+        <h2>Rechazada el {{ idea.fechaRechazo|date('d/m/Y') }}</h2>
+    {% elseif idea.fechaAprobacion %}
+        <h2>Aprobada el {{ idea.fechaAprobacion|date('d/m/Y') }}</h2>
+    {% endif %}
+
+    <p class="well well-sm">{{ idea.descripcion }}</p>
 
     <a href="{{ path('idea_listar') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Volver al listado de ideas</a>
 {% endblock %}
