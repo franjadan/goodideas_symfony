@@ -6,6 +6,7 @@ AppBundle\Entity\Idea:
       fechaPropuesta: <dateTimeThisYear()>
       fechaAprobacion: '25%? <dateTimeBetween($fechaPropuesta, "now")>'
       fechaRechazo: '25%? <dateTimeBetween(max($fechaPropuesta, $fechaAprobacion), "now")>'
+      categorias: '<numberBetween(0, 3)>x @categoria*'
 
 AppBundle\Entity\Usuario:
     usuario_{1..20}:
@@ -35,3 +36,8 @@ AppBundle\Entity\Prioridad:
     prioridad_alta:
       texto: Alta
       orden: 2
+
+AppBundle\Entity\Categoria:
+  categoria_{1..5}:
+    nombre: <word()>
+    descripcion: <paragraph()>

@@ -77,10 +77,19 @@ class Idea
      * @var Prioridad
      */
     private $prioridad;
-    
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Categoria")
+     *
+     * @var Collection|Categoria[]
+     */
+    private $categorias;
+
+
     public function __construct()
     {
         $this->votos = new ArrayCollection();
+        $this->categorias = new ArrayCollection();
     }
 
     /// Getters y Setters
@@ -202,7 +211,7 @@ class Idea
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getVotos()
     {
@@ -253,4 +262,35 @@ class Idea
         return $this;
     }
 
+    /**
+     * @param Categoria $categoria
+     * @return Idea
+     */
+    public function addCategoria(Categoria $categoria)
+    {
+        if (!$this->categorias->contains($categoria)) {
+            $this->categorias->add($categoria);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Categoria $categoria
+     * @return Idea
+     */
+    public function removeCategoria(Categoria $categoria)
+    {
+        $this->categorias->removeElement($categoria);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getCategorias()
+    {
+        return $this->categorias;
+    }
 }
