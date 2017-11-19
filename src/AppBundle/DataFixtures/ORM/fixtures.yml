@@ -9,6 +9,15 @@ AppBundle\Entity\Idea:
       categorias: '<numberBetween(0, 3)>x @categoria*'
 
 AppBundle\Entity\Usuario:
+    admin:
+      nombreUsuario: admin
+      password: admin
+      nombre: Usuario
+      apellidos: Administrador
+      correoElectronico: <es_ES:email()>
+      administrador: true
+      moderador: false
+      seleccionador: false
     usuario_{1..20}:
       nombreUsuario (unique): <es_ES:username()>
       password: <word()>
