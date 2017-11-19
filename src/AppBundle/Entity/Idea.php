@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,7 +64,19 @@ class Idea
      */
     private $fechaRechazo;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Voto", mappedBy="idea")
+     *
+     * @var Collection|Voto[]
+     */
+    private $votos;
 
+
+    
+    public function __construct()
+    {
+        $this->votos = new ArrayCollection();
+    }
 
     /// Getters y Setters
 
@@ -179,6 +193,40 @@ class Idea
     public function setFechaRechazo($fechaRechazo)
     {
         $this->fechaRechazo = $fechaRechazo;
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVotos()
+    {
+        return $this->votos;
+    }
+
+    /**
+     * @param Voto $voto
+     * @return Idea
+     */
+    public function addVoto(Voto $voto)
+    {
+        if (!$this->votos->contains($voto)) {
+            $this->votos->add($voto);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Voto $voto
+     * @return Idea
+     */
+    public function removeVoto(Voto $voto)
+    {
+        if ($this->votos->contains($voto)) {
+            $this->votos->removeElement($voto);
+        }
+
         return $this;
     }
 }

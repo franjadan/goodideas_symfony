@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,7 +12,7 @@ class Voto
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Idea")
+     * @ORM\ManyToOne(targetEntity="Idea", inversedBy="votos")
      *
      * @var Idea
      */
