@@ -17,3 +17,10 @@ AppBundle\Entity\Usuario:
       administrador: false
       moderador: <boolean(25)>
       seleccionador: <boolean(10)>
+
+AppBundle\Entity\Voto:
+    voto_{1..20}:
+      idea: '@idea*'
+      usuario: '@usuario*'
+      puntos: <numberBetween(1,4)>
+      fecha: <dateTimeBetween($idea->getFechaPropuesta(), "now")>
