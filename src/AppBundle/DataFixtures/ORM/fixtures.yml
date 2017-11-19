@@ -24,3 +24,14 @@ AppBundle\Entity\Voto:
       usuario: '@usuario*'
       puntos: <numberBetween(1,4)>
       fecha: <dateTimeBetween($idea->getFechaPropuesta(), "now")>
+
+AppBundle\Entity\Prioridad:
+    prioridad_baja:
+      texto: Baja
+      orden: 0
+    prioridad_media:
+      texto: Media
+      orden: 1
+    prioridad_alta:
+      texto: Alta
+      orden: 2
