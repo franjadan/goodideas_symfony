@@ -6,25 +6,28 @@ use Doctrine\ORM\EntityRepository;
 
 class UsuarioRepository extends EntityRepository
 {
-    public function findBySinIdeas()
+    private function findByQueryBuilder()
     {
         return $this->createQueryBuilder('u')
+            ->addSelect('i')
+            ->leftJoin('u.ideasPropuestas', 'i')
+            ->orderBy('SIZE(u.ideasPropuestas)', 'DESC')
+            ->addOrderBy('u.apellidos')
+            ->addOrderBy('u.nombre');
+    }
+
+    public function findBySinIdeas()
+    {
+        return $this->findByQueryBuilder()
             ->andWhere('SIZE(u.ideasPropuestas)=0')
-            ->orderBy('u.apellidos')
-            ->addOrderBy('u.nombre')
             ->getQuery()
             ->getResult();
     }
 
     public function findByConIdeas()
     {
-        return $this->createQueryBuilder('u')
-            ->addSelect('i')
-            ->leftJoin('u.ideasPropuestas', 'i')
+        return $this->findByQueryBuilder()
             ->andWhere('SIZE(u.ideasPropuestas)>0')
-            ->orderBy('SIZE(u.ideasPropuestas)', 'DESC')
-            ->addOrderBy('u.apellidos')
-            ->addOrderBy('u.nombre')
             ->getQuery()
             ->getResult();
     }
