@@ -31,4 +31,11 @@ class UsuarioRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findUsuariosPorPuntosDescendentes()
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT u AS usuario, SUM(h.puntos) AS puntos FROM AppBundle:HistorialPuntos h, AppBundle:Usuario u WHERE h.usuario = u GROUP BY u ORDER BY puntos DESC')
+            ->getResult();
+    }
 }

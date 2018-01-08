@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block title 'Listado de usuarios que han propuesto ideas' %}
+
+{% block content %}
+    <h1>Usuarios y puntuaciones</h1>
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>Nombre de usuario</th>
+                <th>Saldo de puntos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dato in datos %}
+            <tr>
+                <td>{{ dato['usuario'].apellidos }}</td>
+                <td>{{ dato['usuario'].nombre}} </td>
+                <td>{{ dato['usuario'].nombreUsuario }}</td>
+                <td>{{ dato['puntos'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">No hay usuarios que mostrar</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

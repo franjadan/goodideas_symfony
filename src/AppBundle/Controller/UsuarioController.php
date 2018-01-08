@@ -20,7 +20,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * @Route("/usuarios", name="usuarios_listar")
+     * @Route("/usuarios/con-ideas", name="usuarios_con_ideas_listar")
      */
     public function listarUsuariosConIdeasAction()
     {
@@ -28,6 +28,18 @@ class UsuarioController extends Controller
 
         return $this->render('usuario/usuario_listar.html.twig', [
             'usuarios' => $usuarios
+        ]);
+    }
+
+    /**
+     * @Route("/usuarios", name="usuarios_listar")
+     */
+    public function listarUsuariosConPuntos()
+    {
+        $datos = $this->getDoctrine()->getRepository('AppBundle:Usuario')->findUsuariosPorPuntosDescendentes();
+
+        return $this->render('usuario/usuario_listar_puntos.html.twig', [
+            'datos' => $datos
         ]);
     }
 }
