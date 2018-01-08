@@ -49,4 +49,11 @@ class IdeaRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findIdeasYVotosPorPuntosDecrecientes()
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT i AS idea, SUM(v.puntos) AS puntos, COUNT(v.puntos) AS votos FROM AppBundle:Idea i, AppBundle:Voto v WHERE v.idea = i GROUP BY i ORDER BY puntos DESC')
+            ->getResult();
+    }
 }

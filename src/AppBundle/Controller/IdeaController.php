@@ -9,6 +9,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class IdeaController extends Controller
 {
+
+    /**
+     * @Route("/ideas/votos", name="idea_votos_listar")
+     */
+    public function listarVotosAction()
+    {
+        $datos = $this->getDoctrine()->getRepository('AppBundle:Idea')->findIdeasYVotosPorPuntosDecrecientes();
+
+        return $this->render('idea/listar_votos.html.twig', [
+            'datos' => $datos
+        ]);
+    }
+
     /**
      * @Route("/ideas/{filtro}", name="idea_listar", defaults={"filtro": "todas"}, requirements={"filtro": "todas|aprobadas|rechazadas"})
      */
