@@ -18,7 +18,24 @@ class IdeaController extends Controller
         $datos = $this->getDoctrine()->getRepository('AppBundle:Idea')->findIdeasYVotosPorPuntosDecrecientes();
 
         return $this->render('idea/listar_votos.html.twig', [
-            'datos' => $datos
+            'datos' => $datos,
+            'ultima_semana' => false
+        ]);
+    }
+
+    /**
+     * @Route("/ideas/votos/semana", name="idea_votos_listar_semana")
+     */
+    public function listarVotosSemanaAction()
+    {
+        $desde = new \DateTime("-1 week");
+        $hasta = new \DateTime();
+
+        $datos = $this->getDoctrine()->getRepository('AppBundle:Idea')->findIdeasYVotosPorPuntosDecrecientesRangoFechas($desde, $hasta);
+
+        return $this->render('idea/listar_votos.html.twig', [
+            'datos' => $datos,
+            'ultima_semana' => true
         ]);
     }
 

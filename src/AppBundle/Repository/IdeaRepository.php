@@ -56,4 +56,13 @@ class IdeaRepository extends EntityRepository
             ->createQuery('SELECT i AS idea, SUM(v.puntos) AS puntos, COUNT(v.puntos) AS votos FROM AppBundle:Idea i, AppBundle:Voto v WHERE v.idea = i GROUP BY i ORDER BY puntos DESC')
             ->getResult();
     }
+
+    public function findIdeasYVotosPorPuntosDecrecientesRangoFechas(\DateTime $desde, \DateTime $hasta)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT i AS idea, SUM(v.puntos) AS puntos, COUNT(v.puntos) AS votos FROM AppBundle:Idea i, AppBundle:Voto v WHERE v.idea = i AND v.fecha >= :desde AND v.fecha <= :hasta GROUP BY i ORDER BY puntos DESC')
+            ->setParameter('desde', $desde)
+            ->setParameter('hasta', $hasta)
+            ->getResult();
+    }
 }
