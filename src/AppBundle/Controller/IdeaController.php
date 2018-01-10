@@ -17,9 +17,15 @@ class IdeaController extends Controller
     {
         $datos = $this->getDoctrine()->getRepository('AppBundle:Idea')->findIdeasYVotosPorPuntosDecrecientes();
 
+        $limitePuntos = 5;
+        $ideasConPuntos = $this->getDoctrine()->getRepository('AppBundle:Idea')->countIdeasConMasDePuntos($limitePuntos);
+
         return $this->render('idea/listar_votos.html.twig', [
             'datos' => $datos,
-            'ultima_semana' => false
+            'ultima_semana' => false,
+            'top_ideas' => $ideasConPuntos,
+            'limite_puntos' => $limitePuntos
+
         ]);
     }
 

@@ -65,4 +65,12 @@ class IdeaRepository extends EntityRepository
             ->setParameter('hasta', $hasta)
             ->getResult();
     }
+
+    public function countIdeasConMasDePuntos($puntos)
+    {
+        return count($this->getEntityManager()
+            ->createQuery('SELECT COUNT(v.idea) FROM AppBundle:Voto v GROUP BY v.idea HAVING SUM(v.puntos) >= :limite')
+            ->setParameter('limite', $puntos)
+            ->getScalarResult());
+    }
 }

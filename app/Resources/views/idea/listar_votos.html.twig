@@ -5,6 +5,12 @@
 {% block content %}
     <h1>Catálogo de ideas votadas{% if ultima_semana %} la última semana{% endif %}</h1>
 
+    {% if top_ideas is defined %}
+    <div class="alert alert-info">
+        Hay {{ top_ideas }} {{ top_ideas == 1 ? 'idea' : 'ideas' }} con {{ limite_puntos }} o más puntos
+    </div>
+    {% endif %}
+
     <table class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
