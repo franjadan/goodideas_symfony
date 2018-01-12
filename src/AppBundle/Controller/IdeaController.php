@@ -87,6 +87,7 @@ class IdeaController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $em->flush();
+                return $this->redirectToRoute('idea_listar');
             }
             catch (\Exception $e) {
                 $this->addFlash('error', 'No se han podido guardar los cambios');
