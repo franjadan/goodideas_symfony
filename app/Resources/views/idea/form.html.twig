@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+    {% for mensaje in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ mensaje }}
+        </div>
+    {% endfor %}
     <h1>{{ idea.titulo }}</h1>
 
     {{ form_start(formulario) }}

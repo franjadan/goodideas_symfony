@@ -79,13 +79,18 @@ class IdeaController extends Controller
     public function mostrarAction(Request $request, Idea $idea)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $form = $this->createForm(IdeaType::class, $idea);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
+            try {
+                $em->flush();
+            }
+            catch (\Exception $e) {
+                $this->addFlash('error', 'No se han podido guardar los cambios');
+            }
         }
 
         return $this->render('idea/form.html.twig', [
