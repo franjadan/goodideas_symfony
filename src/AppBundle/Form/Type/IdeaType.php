@@ -16,20 +16,24 @@ class IdeaType extends AbstractType
                 'label' => 'Título'
             ])
             ->add('descripcion', null, [
-                'label' => 'Descripción de la idea'
+                'label' => 'Descripción de la idea',
+
             ])
             ->add('autor', null, [
                 'label' => 'Propuesta por'
             ])
             ->add('fechaPropuesta', null, [
-                'label' => 'Fecha de la propuesta'
+                'label' => 'Fecha de la propuesta',
+                'widget' => 'single_text'
             ])
             ->add('fechaAprobacion', null, [
                 'label' => 'Fecha de la aprobación',
+                'widget' => 'single_text',
                 'required' => false
             ])
             ->add('fechaRechazo', null, [
                 'label' => 'Fecha del rechazo',
+                'widget' => 'single_text',
                 'required' => false
             ]);
     }
