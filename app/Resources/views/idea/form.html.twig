@@ -7,7 +7,10 @@
 {% block content %}
     <h1>{{ idea.titulo }}</h1>
 
-    {{ form(formulario) }}
+    {{ form_start(formulario) }}
+    {{ form_widget(formulario) }}
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    {{ form_end(formulario) }}
 
     <a href="{{ path('idea_listar') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Volver al listado de ideas</a>
 {% endblock %}
