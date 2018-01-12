@@ -12,14 +12,24 @@ class IdeaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titulo')
-            ->add('descripcion')
-            ->add('autor')
-            ->add('fechaPropuesta')
+            ->add('titulo', null, [
+                'label' => 'Título'
+            ])
+            ->add('descripcion', null, [
+                'label' => 'Descripción de la idea'
+            ])
+            ->add('autor', null, [
+                'label' => 'Propuesta por'
+            ])
+            ->add('fechaPropuesta', null, [
+                'label' => 'Fecha de la propuesta'
+            ])
             ->add('fechaAprobacion', null, [
+                'label' => 'Fecha de la aprobación',
                 'required' => false
             ])
             ->add('fechaRechazo', null, [
+                'label' => 'Fecha del rechazo',
                 'required' => false
             ]);
     }
