@@ -7,6 +7,7 @@ use AppBundle\Entity\Usuario;
 use AppBundle\Form\Type\IdeaType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class IdeaController extends Controller
 {
@@ -75,9 +76,17 @@ class IdeaController extends Controller
     /**
      * @Route("/idea/{id}", name="idea_mostrar")
      */
-    public function mostrarAction(Idea $idea)
+    public function mostrarAction(Request $request, Idea $idea)
     {
+        $em = $this->getDoctrine()->getManager();
+        
         $form = $this->createForm(IdeaType::class, $idea);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+        }
 
         return $this->render('idea/form.html.twig', [
             'idea' => $idea,
