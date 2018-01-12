@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Idea;
 use AppBundle\Entity\Usuario;
+use AppBundle\Form\Type\IdeaType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -76,8 +77,11 @@ class IdeaController extends Controller
      */
     public function mostrarAction(Idea $idea)
     {
-        return $this->render('idea/mostrar.html.twig', [
-            'idea' => $idea
+        $form = $this->createForm(IdeaType::class, $idea);
+
+        return $this->render('idea/form.html.twig', [
+            'idea' => $idea,
+            'formulario' => $form->createView()
         ]);
     }
 }
