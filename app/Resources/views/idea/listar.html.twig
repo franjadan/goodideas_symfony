@@ -9,6 +9,7 @@
         {% if filtro != 'todas' %}<a href="{{ path('idea_listar', {'filtro': 'todas'}) }}" class="btn btn-info">Mostrar todas las ideas</a>{% endif %}
         {% if filtro != 'aprobadas' %}<a href="{{ path('idea_listar', {'filtro': 'aprobadas'}) }}" class="btn btn-info">Mostrar las ideas aprobadas</a>{% endif %}
         {% if filtro != 'rechazadas' %}<a href="{{ path('idea_listar', {'filtro': 'rechazadas'}) }}" class="btn btn-info">Mostrar las ideas rechazadas</a>{% endif %}
+        <a href="{{ path('idea_nueva') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva idea</a>
     </p>
 
     <table class="table table-bordered table-hover table-striped">

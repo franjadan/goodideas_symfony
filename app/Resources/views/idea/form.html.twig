@@ -10,7 +10,7 @@
             {{ mensaje }}
         </div>
     {% endfor %}
-    <h1>{{ idea.titulo }}</h1>
+    <h1>{{ idea.id ? idea.titulo : 'Nueva idea' }}</h1>
 
     {{ form_start(formulario) }}
     {{ form_widget(formulario) }}
