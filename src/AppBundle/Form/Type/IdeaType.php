@@ -3,7 +3,9 @@
 namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Idea;
+use AppBundle\Entity\Usuario;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +22,8 @@ class IdeaType extends AbstractType
                 'label' => 'Descripción de la idea',
 
             ])
-            ->add('autor', null, [
+            ->add('autor', EntityType::class, [
+                'class' => Usuario::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.apellidos', 'ASC')
