@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Categoria;
 use AppBundle\Entity\Idea;
 use AppBundle\Entity\Usuario;
 use Doctrine\ORM\EntityRepository;
@@ -45,9 +46,11 @@ class IdeaType extends AbstractType
                 'widget' => 'single_text',
                 'required' => false
             ])
-            ->add('categorias', null, [
+            ->add('categorias', EntityType::class, [
+                'class' => Categoria::class,
                 'label' => 'Categorias',
                 'expanded' => true,
+                'multiple' => true,
                 'required' => false
             ]);
     }
