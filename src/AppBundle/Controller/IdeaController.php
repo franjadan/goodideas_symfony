@@ -75,40 +75,16 @@ class IdeaController extends Controller
 
     /**
      * @Route("/idea/nueva", name="idea_nueva")
-     */
-    public function nuevaAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $idea = new Idea();
-        $em->persist($idea);
-
-        $form = $this->createForm(IdeaType::class, $idea);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            try {
-                $em->flush();
-                return $this->redirectToRoute('idea_listar');
-            }
-            catch (\Exception $e) {
-                $this->addFlash('error', 'No se han podido guardar los cambios');
-            }
-        }
-
-        return $this->render('idea/form.html.twig', [
-            'idea' => $idea,
-            'formulario' => $form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/idea/{id}", name="idea_mostrar")
      */
-    public function mostrarAction(Request $request, Idea $idea)
+    public function mostrarAction(Request $request, Idea $idea = null)
     {
         $em = $this->getDoctrine()->getManager();
+
+        if (null === $idea) {
+            $idea = new Idea();
+            $em->persist($idea);
+        }
 
         $form = $this->createForm(IdeaType::class, $idea);
 
