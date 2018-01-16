@@ -74,6 +74,38 @@ class IdeaController extends Controller
     }
 
     /**
+     * @Route("/idea/eliminar/{id}", name="idea_eliminar")
+     */
+    public function eliminarAction(Request $request, Idea $idea)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if ($request->isMethod('POST')) {
+            try {
+                // ojo: es necesario eliminar antes los votos y los comentarios
+                foreach($idea->getVotos() as $voto) {
+                    $em->remove($voto);
+                };
+                foreach($idea->getComentarios() as $comentario) {
+                    $em->remove($comentario);
+                };
+
+                // ya podemos eliminar la entidad
+                $em->remove($idea);
+                $em->flush();
+                return $this->redirectToRoute('idea_listar');
+            }
+            catch (\Exception $e) {
+                $this->addFlash('error', 'No se ha podido eliminar la idea');
+            }
+        }
+
+        return $this->render('idea/eliminar.html.twig', [
+            'idea' => $idea
+        ]);
+    }
+
+    /**
      * @Route("/idea/nueva", name="idea_nueva")
      * @Route("/idea/{id}", name="idea_mostrar")
      */
