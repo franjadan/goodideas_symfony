@@ -44,6 +44,11 @@ class IdeaType extends AbstractType
                 'label' => 'Fecha del rechazo',
                 'widget' => 'single_text',
                 'required' => false
+            ])
+            ->add('categorias', null, [
+                'label' => 'Categorias',
+                'expanded' => true,
+                'required' => false
             ]);
     }
 

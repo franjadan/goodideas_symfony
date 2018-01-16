@@ -33,6 +33,13 @@ class Categoria
      */
     private $descripcion;
 
+    /// Convertir en una cadena
+
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
     /// Getters y setters
 
     /**
