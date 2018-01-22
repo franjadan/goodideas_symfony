@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block title 'Administración' %}
+
+{% block body %}
+    <div class="container">
+        <form action="{{ path('usuario_entrar') }}" method="post">
+            <input type="text" name="_username" placeholder="Nombre de usuario"><br/>
+            <input type="password" name="_password" placeholder="Contraseña"><br/>
+            <button type="submit">Entrar en la aplicación</button>
+        </form>
+    </div>
+{% endblock %}
