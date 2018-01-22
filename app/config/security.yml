@@ -5,7 +5,17 @@ security:
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+                users:
+                    juan:
+                        password: nadie
+                        roles: 'ROLE_USER'
+                    admin:
+                        password: chuck
+                        roles: 'ROLE_ADMIN'
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
