@@ -35,5 +35,8 @@ security:
                 login_path: usuario_entrar
                 check_path: usuario_entrar
 
+            logout:
+                path: usuario_salir
+
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }

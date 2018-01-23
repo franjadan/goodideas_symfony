@@ -14,4 +14,13 @@ class SeguridadController extends Controller
     {
         return $this->render('seguridad/entrar.html.twig');
     }
+
+   /**
+     * @Route("/salir", name="usuario_salir")
+     */
+    public function salirAction()
+    {
+        // no contiene nada porque Symfony interceptará la petición y la acción
+        // nunca se ejecutará
+    }
 }
