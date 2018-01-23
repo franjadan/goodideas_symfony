@@ -4,15 +4,25 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SeguridadController extends Controller
 {
     /**
      * @Route("/entrar", name="usuario_entrar")
      */
-    public function entrarAction()
+    public function entrarAction(AuthenticationUtils $authUtils)
     {
-        return $this->render('seguridad/entrar.html.twig');
+        // obtener el error de autenticación (si hay alguno)
+        $error = $authUtils->getLastAuthenticationError();
+
+        // obtener el último nombre de usuario enviado
+        $ultimoUsuario = $authUtils->getLastUsername();
+
+        return $this->render('seguridad/entrar.html.twig', [
+            'ultimo_usuario' => $ultimoUsuario,
+            'error' => $error,
+        ]);
     }
 
    /**
