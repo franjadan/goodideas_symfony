@@ -27,7 +27,13 @@
             <tr>
                 <td>{% if idea.fechaRechazo %}<i class="fa fa-times"></i>{% elseif idea.fechaAprobacion %}<i class="fa fa-check"></i>{% endif %}</td>
                 <td>{{ idea.fechaPropuesta|date('d/m/Y') }}</td>
-                <td><a href="{{ path('idea_mostrar', {'id': idea.id}) }}">{{ idea.titulo }}</a></td>
+                <td>
+                    {% if is_granted('IDEA_VER', idea) %}
+                        <a href="{{ path('idea_mostrar', {'id': idea.id}) }}">{{ idea.titulo }}</a>
+                    {% else %}
+                        {{ idea.titulo }}
+                    {% endif %}
+                </td>
                 <td>{{ idea.descripcion }}</td>
                 <td><a href="{{ path('idea_usuario_mostrar', {'id': idea.autor.id}) }}">{{ idea.autor }}</a></td>
             </tr>
