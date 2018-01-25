@@ -30,21 +30,25 @@ class IdeaType extends AbstractType
                         ->orderBy('u.apellidos', 'ASC')
                         ->addOrderBy('u.nombre', 'ASC');
                 },
-                'label' => 'Propuesta por'
+                'label' => 'Propuesta por',
+                'disabled' => !$options['admin']
             ])
             ->add('fechaPropuesta', null, [
                 'label' => 'Fecha de la propuesta',
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'disabled' => !$options['admin']
             ])
             ->add('fechaAprobacion', null, [
                 'label' => 'Fecha de la aprobación',
                 'widget' => 'single_text',
-                'required' => false
+                'required' => false,
+                'disabled' => !$options['admin']
             ])
             ->add('fechaRechazo', null, [
                 'label' => 'Fecha del rechazo',
                 'widget' => 'single_text',
-                'required' => false
+                'required' => false,
+                'disabled' => !$options['admin']
             ])
             ->add('categorias', EntityType::class, [
                 'class' => Categoria::class,
@@ -59,6 +63,7 @@ class IdeaType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Idea::class,
+            'admin' => false
         ]);
     }
 }

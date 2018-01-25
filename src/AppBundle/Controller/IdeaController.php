@@ -120,7 +120,8 @@ class IdeaController extends Controller
         }
 
         $form = $this->createForm(IdeaType::class, $idea, [
-            'disabled' => !$this->isGranted(IdeaVoter::MODIFICAR, $idea)
+            'disabled' => !$this->isGranted(IdeaVoter::MODIFICAR, $idea),
+            'admin' => $this->isGranted('ROLE_ADMIN')
         ]);
 
         $form->handleRequest($request);
