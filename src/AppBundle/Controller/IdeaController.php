@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Idea;
 use AppBundle\Entity\Usuario;
 use AppBundle\Form\Type\IdeaType;
+use AppBundle\Security\IdeaVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -118,7 +119,9 @@ class IdeaController extends Controller
             $em->persist($idea);
         }
 
-        $form = $this->createForm(IdeaType::class, $idea);
+        $form = $this->createForm(IdeaType::class, $idea, [
+            'disabled' => !$this->isGranted(IdeaVoter::MODIFICAR, $idea)
+        ]);
 
         $form->handleRequest($request);
 
