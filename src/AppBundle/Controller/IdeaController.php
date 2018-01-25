@@ -7,6 +7,7 @@ use AppBundle\Entity\Usuario;
 use AppBundle\Form\Type\IdeaType;
 use AppBundle\Security\IdeaVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -76,6 +77,7 @@ class IdeaController extends Controller
 
     /**
      * @Route("/idea/eliminar/{id}", name="idea_eliminar")
+     * @Security("is_granted('IDEA_ELIMINAR', idea)")
      */
     public function eliminarAction(Request $request, Idea $idea)
     {
