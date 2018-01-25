@@ -38,5 +38,8 @@ security:
             logout:
                 path: usuario_salir
 
-    access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+    # En lugar de proteger todas las rutas que empiecen por /admin, protegeremos las rutas
+    # individualmente con la anotación @Security
+
+    #access_control:
+    #    - { path: ^/admin, roles: ROLE_ADMIN }
