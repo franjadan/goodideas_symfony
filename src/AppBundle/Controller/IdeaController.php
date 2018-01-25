@@ -6,6 +6,7 @@ use AppBundle\Entity\Idea;
 use AppBundle\Entity\Usuario;
 use AppBundle\Form\Type\IdeaType;
 use AppBundle\Security\IdeaVoter;
+use AppBundle\Service\Conversor;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,13 +53,15 @@ class IdeaController extends Controller
     /**
      * @Route("/ideas/{filtro}", name="idea_listar", defaults={"filtro": "todas"}, requirements={"filtro": "todas|aprobadas|rechazadas"})
      */
-    public function listarAction($filtro)
+    public function listarAction($filtro, Conversor $conversor)
     {
         $ideas = $this->getDoctrine()->getRepository('AppBundle:Idea')->findPorFechaDecrecienteYFiltro($filtro);
 
+        $totalEnRomano = $conversor->aFormatoRomano(count($ideas));
         return $this->render('idea/listar.html.twig', [
             'ideas' => $ideas,
-            'filtro' => $filtro
+            'filtro' => $filtro,
+            'total' => $totalEnRomano
         ]);
     }
 
